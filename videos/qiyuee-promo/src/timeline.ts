@@ -8,7 +8,7 @@ const order = [
   ['crane', 165],      // S3 crane-rise-reveal（经营概览）
   ['ai', 105],         // S4 glass-pill-dictation-typing（AI 助手）
   ['rows', 105],       // S5 row-embed（流程审批 · 待办行嵌入）
-  ['exploded', 180],   // S6 space-camera-moves · exploded-view（业财一体 · 门户工作台）
+  ['exploded', 200],   // S6 space-camera-moves · exploded-view（业财一体 · 门户工作台；动画 170f + 海报 hold 30f）
   ['phone', 168],      // S7 radial-ripple-phone-chips（移动办公）
   ['industries', 150], // S8 vertical-word-roll-blur-cycle（多行业适配）
   ['outro', 165],      // S9 outro-group-photo-launch
