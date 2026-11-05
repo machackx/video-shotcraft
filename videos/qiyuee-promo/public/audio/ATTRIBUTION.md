@@ -6,7 +6,7 @@
 |---|---|---|---|---|
 | `bgm/cat-walk-cut.flac` | Cat Walk（House，130 BPM） | Arulo | Mixkit Stock Music Free License（可商用、免署名） | https://assets.mixkit.co/music/371/371.mp3 ，经 video-shotcraft `assets/audio/bgm/cat-walk.mp3`（见该仓库 `assets/audio/ATTRIBUTION.md`） |
 
-本片只用其中一段：从 7.2126 s 起 47 s（`scripts/cut-bgm.py` 无损裁切为 FLAC），节奏分析见 `analysis/bgm-cat-walk.json`。
+本片只用其中一段：从 7.2126 s 起 48.5 s（`scripts/cut-bgm.py` 无损裁切为 FLAC），节奏分析见 `analysis/bgm-cat-walk.json`。
 商用发布前请按 Mixkit 许可页复核一次条款。
 
 ## SFX

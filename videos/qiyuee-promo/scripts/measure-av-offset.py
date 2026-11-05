@@ -15,7 +15,7 @@ subprocess.run(['npx', 'esbuild', 'src/audio-cues.ts', '--bundle', '--platform=n
                 '--external:remotion', '--external:react', '--log-level=error', f'--outfile={bundle}'], cwd=ROOT, check=True)
 cues = json.loads(subprocess.run(['node', '-e', f"import('{bundle}').then(m=>console.log(JSON.stringify(m.CUES)))"],
                                  cwd=ROOT, capture_output=True, text=True, check=True).stdout)
-probes = [c for c in cues if c['src'].endswith(('glass-tap.wav', 'glass-tap-b.wav', 'thud-soft.wav', 'impact-deep.wav', 'tick-a.wav'))]
+probes = [c for c in cues if c['src'].endswith(('glass-tap.wav', 'glass-tap-b.wav', 'thud-soft.wav', 'impact-deep.wav', 'tick-a.wav', 'typing-query.wav'))]
 res = []
 for c in probes:
     x, xsr = sf.read(ROOT / 'public' / c['src'])
@@ -32,7 +32,8 @@ for c in probes:
                 'score': round(float((corr / norm)[k]), 3)})
 for r in res: print(r)
 offs = [r['offset_f'] for r in res if r['score'] > 0.5]
-out = {'pipeline': 'Remotion 4.0.484 · h264 + AAC 48kHz stereo · mp4', 'probes': res,
+import datetime
+out = {'date': datetime.date.today().isoformat(), 'method': 'normalized cross-correlation of SFX source files vs. rendered no-BGM mix (mono 48 kHz)', 'pipeline': 'Remotion 4.0.484 · h264 + AAC 48kHz stereo · mp4', 'probes': res,
        'offset_f_median': float(np.median(offs)) if offs else None, 'offset_f_spread': float(np.ptp(offs)) if offs else None}
 print('median offset frames:', out['offset_f_median'], 'spread', out['offset_f_spread'])
 json.dump(out, open(ROOT / 'analysis' / 'av-offset.json', 'w'), indent=1)

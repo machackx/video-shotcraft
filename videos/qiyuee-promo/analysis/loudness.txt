@@ -1,2 +1,5 @@
-draft-v2（MASTER 增益前）：Integrated −22.1 LUFS · LRA 9.9 LU · True peak −6.5 dBFS（ffmpeg ebur128）
-draft-v2-nobgm：Integrated −27.5 LUFS · LRA 23.4 LU
+响度记录（ffmpeg ebur128，true peak 开启）
+
+draft-v2（总线增益前）：Integrated −22.1 LUFS · LRA 9.9 LU · True peak −6.5 dBFS
+终渲 out/qiyuee-promo.mp4（2026-11-05）：Integrated −17.2 LUFS · LRA 8.9 LU · True peak −1.7 dBFS
+终渲 out/qiyuee-promo-nobgm.mp4（2026-11-05）：Integrated −23.5 LUFS · LRA 19.5 LU · True peak −2.6 dBFS

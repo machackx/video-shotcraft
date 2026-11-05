@@ -17,7 +17,7 @@ import { DIP } from '../timeline';
 export const S8_DEFAULTS = {
   stem: '灵活适配',
   words: '保安服务|电梯维保|资产评估|专业服务',
-  note: '权限、菜单和流程，按企业组织与岗位灵活配置',
+  note: '权限、菜单和流程，按组织与岗位配置',
   accent: Q.accent as string,
 };
 

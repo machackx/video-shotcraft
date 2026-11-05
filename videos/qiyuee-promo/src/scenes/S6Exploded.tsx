@@ -1,12 +1,17 @@
 // S6 业财一体 —— 镜头卡 space-camera-moves · A 式 exploded-view（demos/camera/space-camera-moves/ExplodedView.tsx）
-// 保留（参数原样）：perspective 2400；3/4 轴测 rotateX 54° / rotateZ −34°→−32°，悬停环绕 +10°、俯角收 4°；
-// 炸开时机位拉远 0.56→0.47 并下移、合体后推回；5 层 translateZ 150/270/…/640 弹簧（damping 15、stiffness 120）错峰 5f，
-// 页面上越靠远端（顶部）的层越高；18–24f 预备下压 6px；标注 52f 起每条 8f 描线 + 12f 升起、错峰 6f，104f 起撤；
-// 108f 起逆序 ease-in 合体（每层 14f、错峰 3f），落座后整组 8px 阻尼下沉回弹 + 台面接触影一紧（不抖屏，Q3），
-// 扫光一次（裁进底板圆角，Q4）；140f 起左上角字标 + 标题逐字升起 + 副标；层影随高度下移变虚、厚度边、底板虚线插槽。
+// 保留：perspective 2400；3/4 轴测 rotateX 54° / rotateZ −34°→−32°，悬停环绕 +10°、俯角收 4°；
+// 5 层 translateZ 150/270/…/640 弹簧（damping 15、stiffness 120）错峰 5f，页面上越靠远端（顶部）的层越高；
+// 18–24f 预备下压 6px；标注每条 8f 描线 + 12f 升起；逆序 ease-in 合体（每层 14f、错峰 3f），落座后整组 8px 阻尼下沉回弹
+// + 台面接触影一紧（不抖屏，Q3），扫光一次（裁进底板圆角，Q4）；左上角字标 + 标题逐字升起 + 副标；
+// 层影随高度下移变虚、厚度边、底板虚线插槽。
 // 适配（真实素材）：页面 = 门户登录页「工作台」示意（.preview-window，4x 元素截图），按构件逐块截图
 // 绝对定位复刻原网格（页面坐标 = CSS px × 1.6）；5 层：导航侧栏 / 收支概览 + 费用趋势 / 常用应用 / 流程进度 / 四张指标卡；
-// 顶栏「工作台」留在底板上；标注与标题改为中文（标题 44px、说明 32px，Q11）；动画 170f 后加 30f 海报 hold（R1）。
+// 顶栏「工作台」留在底板上；标注与标题为中文（标题 44px、说明 32px，Q11）。
+// 偏离 demo（SPEC §5 记录）：
+// - 机位比例 0.62→0.50（demo 0.56→0.47）、下移 cy 30→150、收尾 +80：页面是 1600×768（demo 1600×1000），矮页面放大一档才撑住画面；
+// - 中文两行标注阅读量大：标注错峰 6→5f、起点 52→46f，悬停段整体延长 EXT=42f（撤出 / 合体 / 标题全部顺延），
+//   五条全亮 ≥2s（终检 R3）；
+// - 「收支概览」层的左缘紧贴侧栏，按 demo 的「外缘中点」锚点引线会横穿侧栏（卡片已知坑），改挂右栏、锚在费用趋势右缘。
 import React from 'react';
 import { AbsoluteFill, Img, staticFile, useCurrentFrame } from 'remotion';
 import { LOOKS, Sheen, Stage, TextReveal, alpha, springAt, type Look } from '../fixtures/Look';
@@ -19,7 +24,7 @@ import layout from '../layout.json';
 export const S6_DEFAULTS = {
   title: '业财一体',
   subtitle: '审批、合同、开票、收付款，一体化管理',
-  callouts: '导航|首页、流程、合同、财务\n业财报表|收支概览与费用趋势联动\n常用应用|报销、采购、合同、开票、收款\n流程审批|从发起到完成，每一步可见\n实时指标|待办、审批、应收一目了然',
+  callouts: '导航|首页、流程、合同、财务\n收支概览|收入、支出与费用趋势\n常用应用|报销、采购、开票、收款\n流程进度|从发起到完成，每一步可见\n关键指标|待办、审批、应收一目了然',
 };
 
 const P = layout.portal;
@@ -31,7 +36,8 @@ const PR = P.style.panelRadius * PK;
 const PERSP = 2400;
 const EXPLODE = 24;
 const STAGGER = 5;
-const ASSEMBLE = 108;
+const EXT = 42; // 悬停段延长（见文件头）
+const ASSEMBLE = 108 + EXT;
 const BACK = 3;
 const BACK_DUR = 14;
 
@@ -58,12 +64,12 @@ const statPieces: Piece[] = P.stat.map((s) => ({
 const LAYERS: Layer[] = [
   { key: 'side', z: 150, side: 'L', pieces: [{ src: 'textures/portal-sidebar.png', r: pk(P.sidebar), radius: `${R}px 0 0 ${R}px` }], anchor: pk(P.sidebar) },
   {
-    key: 'charts', z: 270, side: 'L',
+    key: 'charts', z: 270, side: 'R',
     pieces: [
       { src: 'textures/portal-income.png', r: pk(P.income), radius: PR },
       { src: 'textures/portal-trend.png', r: pk(P.trend), radius: PR },
     ],
-    anchor: bbox([pk(P.income), pk(P.trend)]),
+    anchor: pk(P.trend), // 右缘中点在费用趋势外侧，引线不穿任何层
   },
   { key: 'apps', z: 400, side: 'R', pieces: [{ src: 'textures/portal-apps.png', r: pk(P.apps), radius: PR }], anchor: pk(P.apps) },
   { key: 'flow', z: 520, side: 'R', pieces: [{ src: 'textures/portal-flow.png', r: pk(P.flow), radius: PR }], anchor: pk(P.flow) },
@@ -93,10 +99,10 @@ const PieceView: React.FC<{ p: Piece; dz: number; lifted: number }> = ({ p, dz, 
 
 type Cam = { rx: number; rz: number; s: number; cx: number; cy: number };
 const camAt = (f: number): Cam => {
-  const orbit = ramp(f, 30, 74, EASE.smooth);
-  const push = ramp(f, 0, 170, EASE.smooth);
-  const outro = ramp(f, 132, 30, EASE.smooth);
-  const tall = ramp(f, 22, 40, EASE.smooth) * (1 - ramp(f, 106, 30, EASE.smooth));
+  const orbit = ramp(f, 30, 74 + EXT, EASE.smooth);
+  const push = ramp(f, 0, 170 + EXT, EASE.smooth);
+  const outro = ramp(f, 132 + EXT, 30, EASE.smooth);
+  const tall = ramp(f, 22, 40, EASE.smooth) * (1 - ramp(f, 106 + EXT, 30, EASE.smooth));
   return {
     rx: mix(54, 50, orbit),
     rz: mix(-34, -32, ramp(f, 0, 30, EASE.out)) + 10 * orbit,
@@ -122,6 +128,8 @@ const layerP = (f: number, i: number) => {
   return up * (1 - down);
 };
 const CLOSE = ASSEMBLE + (N - 1) * BACK + BACK_DUR;
+/** 合体落座帧（局部）——audio.tsx 的落座 thud / 扫光 shimmer 从这里取，不另写帧号 */
+export const S6_CLOSE = CLOSE;
 
 export const S6Exploded: React.FC<Partial<typeof S6_DEFAULTS> & { duration?: number }> = (props) => {
   const o = { ...S6_DEFAULTS, ...props };
@@ -133,7 +141,7 @@ export const S6Exploded: React.FC<Partial<typeof S6_DEFAULTS> & { duration?: num
   const spread = ramp(f, EXPLODE, 30, EASE.out) * (1 - ramp(f, ASSEMBLE, CLOSE - ASSEMBLE, EASE.exit));
   const sheen = ramp(f, CLOSE + 4, 24, EASE.swift);
   const labels = o.callouts.split('\n').map((l) => l.split('|'));
-  const duration = props.duration ?? 200;
+  const duration = props.duration ?? 249;
   const dip = ramp(f, duration - DIP, DIP, EASE.smooth); // 末 8f 淡到底色，接 S7（不加第三处白闪，R4）
 
   return (
@@ -144,7 +152,7 @@ export const S6Exploded: React.FC<Partial<typeof S6_DEFAULTS> & { duration?: num
         <div
           style={{
             position: 'absolute', left: 960 - W / 2, top: 540 - H / 2, width: W, height: H, transformStyle: 'preserve-3d',
-            transform: `translate(${cam.cx}px, ${cam.cy + thud}px) scale(${cam.s}) rotateX(${cam.rx}deg) rotateZ(${cam.rz}deg)`,
+            transform: `translate(${cam.cx}px, ${cam.cy + thud - crouch}px) scale(${cam.s}) rotateX(${cam.rx}deg) rotateZ(${cam.rz}deg)`,
           }}
         >
           <div
@@ -158,6 +166,8 @@ export const S6Exploded: React.FC<Partial<typeof S6_DEFAULTS> & { duration?: num
           {/* 底板：窗口 + 工作台底色（构件已隐藏）+ 顶栏 + 构件虚线插槽 */}
           <div style={{ position: 'absolute', inset: 0, borderRadius: R, overflow: 'hidden', boxShadow: `inset 0 0 0 2px ${L.line}` }}>
             <Img src={staticFile('textures/portal-base.png')} style={{ position: 'absolute', left: 0, top: 0, width: W, height: H }} />
+            {/* 侧栏抬起后底板露出的槽位：铺工作台底色（底板纹理此处是窗口左侧深色底，会读成"第二根侧栏"） */}
+            <div style={{ position: 'absolute', left: 0, top: 0, width: pk(P.sidebar).w, height: H, background: P.style.bodyBg }} />
             <Img src={staticFile('textures/portal-topbar.png')} style={{ position: 'absolute', left: P.topbar.x * PK, top: P.topbar.y * PK, width: P.topbar.w * PK, height: P.topbar.h * PK }} />
             {LAYERS.flatMap((ly) => ly.pieces).map((pc, i) => (
               <div
@@ -188,7 +198,8 @@ export const S6Exploded: React.FC<Partial<typeof S6_DEFAULTS> & { duration?: num
           })}
           {LAYERS.map((ly, i) => {
             const p = layerP(f, i);
-            const z = ly.z * p + 2 + crouch;
+            // 预备下压改作整组下移（见 transform 的 −crouch）：层 z 不低于底板之上 2px，否则 18–24f 会沉到底板下面整页变空
+            const z = Math.max(2, ly.z * p + 2);
             const lifted = Math.min(1, Math.max(0, p) * 4);
             return (
               <React.Fragment key={ly.key}>
@@ -202,16 +213,16 @@ export const S6Exploded: React.FC<Partial<typeof S6_DEFAULTS> & { duration?: num
       <Callouts f={f} cam={cam} labels={labels} />
 
       <div style={{ position: 'absolute', left: 120, top: 104 }}>
-        <div style={{ opacity: ramp(f, 140, 14, EASE.out) }}>
+        <div style={{ opacity: ramp(f, 140 + EXT, 14, EASE.out) }}>
           <QiyueWordmark size={34} gap={14} />
         </div>
         <div style={{ fontFamily: FONT_CN, fontSize: 112, fontWeight: 700, letterSpacing: '0.04em', lineHeight: 1.1, color: L.ink, marginTop: 22 }}>
-          <TextReveal text={o.title} by="char" variant="rise" start={144} each={18} gap={4} />
+          <TextReveal text={o.title} by="char" variant="rise" start={144 + EXT} each={18} gap={4} />
         </div>
         <div
           style={{
             fontFamily: FONT_CN, fontSize: 42, fontWeight: 500, letterSpacing: '0.02em', color: L.ink2, marginTop: 20,
-            opacity: ramp(f, 156, 14, EASE.out), transform: `translateY(${(1 - ramp(f, 156, 14, EASE.out)) * 16}px)`,
+            opacity: ramp(f, 156 + EXT, 14, EASE.out), transform: `translateY(${(1 - ramp(f, 156 + EXT, 14, EASE.out)) * 16}px)`,
           }}
         >
           {o.subtitle}
@@ -242,10 +253,10 @@ const Callouts: React.FC<{ f: number; cam: Cam; labels: string[][] }> = ({ f, ca
   return (
     <AbsoluteFill style={{ pointerEvents: 'none' }}>
       {placed.map(({ it, y: ly }) => {
-        const start = 52 + it.i * 6;
+        const start = 46 + it.i * 5;
         const draw = ramp(f, start, 8, EASE.out);
         const rise = ramp(f, start + 6, 12, EASE.snappy);
-        const out = ramp(f, 104 + (N - 1 - it.i) * 2, 8, EASE.exit);
+        const out = ramp(f, 104 + EXT + (N - 1 - it.i) * 2, 8, EASE.exit);
         if (draw <= 0 || out >= 1) return null;
         const L_ = it.ly.side === 'L';
         const ax = it.a.x, ay = it.a.y;

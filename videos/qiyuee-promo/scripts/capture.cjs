@@ -5,7 +5,8 @@
 //   2. per-element cutout（透明底，供炸开分层 / 合影飞入）
 //   3. layout.json（每个元素相对其根元素的 CSS px bbox，供动画按真实版式定位）
 //
-// 数据口径（SPEC §0）：公开演示数字保留；页面里出现的人名「刘朵」在截图前从 DOM 抹去。
+// 数据口径（SPEC §0）：公开演示数字保留；页面里出现的用户姓名（看板页头的用户名标签、问候语里的称呼）在截图前从 DOM 抹去。
+// 本仓库不以明文记录该姓名：按结构定位删除，见 redact()。
 // 运行：node scripts/capture.cjs  （需要 playwright；字体需本机安装 Noto Sans SC）
 const { chromium } = require('playwright');
 const fs = require('fs');
@@ -21,15 +22,21 @@ const settle = async (page, ms = 800) => {
   await page.waitForTimeout(ms);
 };
 
-// 抹去个人信息：任何文本节点里的「刘朵」，连同前面的中文逗号一起删除
+// 抹去个人信息（按结构，不写明文姓名）：
+//   1. 看板页头 .qiyue-dashboard__header 的 <span> 里的直接文本节点删除（用户名与铃铛图标同在一个 span，图标保留）；
+//   2. 任何「早上好 / 中午好 / 下午好 / 晚上好 / 你好」+ 逗号 + 称呼 的问候语，只保留问候本身。
+// 返回值 = 处理后页头 span 里是否仍有文本（应为 false）。
 const redact = (page) =>
   page.evaluate(() => {
+    const headerSpans = () => [...document.querySelectorAll('.qiyue-dashboard__header span')];
+    headerSpans().forEach((el) => {
+      [...el.childNodes].forEach((c) => { if (c.nodeType === Node.TEXT_NODE && c.nodeValue.trim()) c.remove(); });
+    });
+    const greet = /((?:早上|中午|下午|晚上)好|你好)[，,]\s*[^\s，,。！!？?]{1,6}/g;
     const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
     let n;
-    while ((n = w.nextNode())) {
-      if (n.nodeValue.includes('刘朵')) n.nodeValue = n.nodeValue.replace(/[，,]?\s*刘朵/g, '');
-    }
-    return document.body.innerText.includes('刘朵');
+    while ((n = w.nextNode())) if (n.nodeValue.match(greet)) n.nodeValue = n.nodeValue.replace(greet, '$1');
+    return headerSpans().some((el) => [...el.childNodes].some((c) => c.nodeType === Node.TEXT_NODE && c.nodeValue.trim()));
   });
 
 // 记录 selector 列表相对 root 的 bbox（CSS px）

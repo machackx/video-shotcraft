@@ -1,6 +1,6 @@
 # 企悦业务协同系统 · 宣传片（Remotion 工程）
 
-用 video-shotcraft「自主自由创作」模式为 https://qiyuee.com 制作的 45.6 秒产品宣传片。
+用 video-shotcraft「自主自由创作」模式为 https://qiyuee.com 制作的 47.4 秒产品宣传片。
 设计依据（产品简报、决策表、视觉 / 动效 tokens、镜头映射、分镜、声音与卡点、偏离记录）见 [SPEC.md](SPEC.md)。
 
 ## 成片

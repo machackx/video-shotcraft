@@ -49,8 +49,8 @@ const IMG_W = (853 / 1844) * IMG_H;
 const IMG_X = (SCREEN_W - IMG_W) / 2;
 const imgPt = (x: number, y: number) => ({ x: IMG_X + (x / 853) * IMG_W, y: (y / 1844) * IMG_H });
 
-// 悬浮卡（首页 .qiyue-floating-status article，190×112 css）按 2× 显示
-const CHIP_K = 2;
+// 悬浮卡（首页 .qiyue-floating-status article，190×112 css）按 2.4× 显示：卡内标签字号到 ≥32px（Q11）
+const CHIP_K = 2.4;
 const CHIP = layout.chips.card[0];
 const CHIP_W = CHIP.w * CHIP_K;
 const CHIP_H = CHIP.h * CHIP_K;
@@ -144,10 +144,10 @@ export const S7Phone: React.FC<Partial<typeof S7_DEFAULTS> & { duration?: number
         </div>
       </div>
 
-      <div style={{ ...chipBase, top: 300, right: 1920 - PX + CHIP_GAP, ...chip(37, 0, -1) }}>
+      <div style={{ ...chipBase, top: 270, right: 1920 - PX + CHIP_GAP, ...chip(37, 0, -1) }}>
         <Img src={staticFile('textures/home-chip-todo.png')} style={{ width: CHIP_W, height: CHIP_H }} />
       </div>
-      <div style={{ ...chipBase, top: 560, left: PX + PW + CHIP_GAP, ...chip(67, 1.8, 1) }}>
+      <div style={{ ...chipBase, top: 540, left: PX + PW + CHIP_GAP, ...chip(67, 1.8, 1) }}>
         <Img src={staticFile('textures/home-chip-msg.png')} style={{ width: CHIP_W, height: CHIP_H }} />
       </div>
 

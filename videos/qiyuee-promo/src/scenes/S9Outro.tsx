@@ -84,7 +84,7 @@ const ELS: El[] = [
   { key: 'msg', img: 'textures/home-chip-msg.png', w: layout.chips.card[1].w * 1.6, h: layout.chips.card[1].h * 1.6, cx: 1640, cy: 214, rot: 4, dx: 500, dy: 0, radius: 18 * 1.6, cue: 10 },
   { key: 'income', img: 'textures/portal-income.png', w: P.income.w * 1.25, h: P.income.h * 1.25, cx: 1612, cy: 892, rot: -3, dx: 450, dy: 260, radius: 12 * 1.25, cue: 13 },
   { key: 'todo', img: 'textures/cap-todo-card.png', w: C.todo.w * 1.3, h: C.todo.h * 1.3, cx: 330, cy: 862, rot: 3, dx: -400, dy: 300, radius: 13 * 1.3, cue: 16 },
-  { key: 'ai', node: <AiPillMini />, w: 560, h: 80, cx: 700, cy: 868, rot: 2, dx: 0, dy: 320, radius: 40, cue: 19 },
+  { key: 'ai', node: <AiPillMini />, w: 560, h: 80, cx: 806, cy: 872, rot: 2, dx: 0, dy: 320, radius: 40, cue: 19 },
   { key: 'kpi', img: 'textures/cap-kpi-staff.png', w: C.metric[1].w * 1.9, h: C.metric[1].h * 1.9, cx: 236, cy: 552, rot: -1.5, dx: -360, dy: 0, radius: 12 * 1.9, cue: 22 },
   { key: 'phone', node: <PhoneMini />, w: 196, h: 410, cx: 1712, cy: 588, rot: -2, dx: 380, dy: 0, radius: 30, cue: 25 },
   { key: 'tags', node: <TagsMini />, w: 680, h: 64, cx: 1060, cy: 974, rot: -1, dx: 200, dy: 300, radius: 32, cue: 28 },
@@ -274,7 +274,7 @@ export const S9Outro: React.FC<Partial<typeof S9_DEFAULTS> & { duration?: number
             <div style={{ fontSize: 54, fontWeight: 500, letterSpacing: '0.24em', color: o.tagColor, marginTop: 34, opacity: tag, transform: `translateY(${(1 - tag) * 6}px)` }}>
               {o.slogan}
             </div>
-            <div style={{ fontSize: 34, fontWeight: 500, letterSpacing: '0.12em', color: hexA('#AFC6EE', 0.95), marginTop: 18, opacity: url, transform: `translateY(${(1 - url) * 6}px)` }}>
+            <div style={{ fontSize: 44, fontWeight: 500, letterSpacing: '0.1em', color: hexA('#AFC6EE', 0.95), marginTop: 18, opacity: url, transform: `translateY(${(1 - url) * 6}px)` }}>
               {o.url}
             </div>
           </div>

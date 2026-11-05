@@ -1,7 +1,7 @@
 """capture.cjs 之后的素材后处理（需要 Pillow）：
 
 1. 门户工作台纹理裁掉窗口下方留白（高度 = layout.portal.cropH，4x）。
-2. 首页手机截图（qiyuee.com/assets/qiyue/mobile-home-reference.png）抹去问候语里的人名「刘朵」
+2. 首页手机截图（qiyuee.com/assets/qiyue/mobile-home-reference.png）抹去问候语里的用户姓名
    与挥手表情，只留「晚上好」——个人信息不进片（SPEC §0 数据口径）。
 
 用法：python3 scripts/crop-portal.py [mobile-home-reference.png 路径]
@@ -35,7 +35,7 @@ if not src.exists():
     urllib.request.urlretrieve('https://qiyuee.com/assets/qiyue/mobile-home-reference.png', src)
 im = Image.open(src).convert('RGB')
 px = im.load()
-x0, x1, y0, y1 = 196, 452, 128, 212  # 「，刘朵」+ 挥手表情（853×1844 原图坐标）
+x0, x1, y0, y1 = 196, 452, 128, 212  # 问候语「晚上好」之后的逗号 + 用户姓名 + 挥手表情（853×1844 原图坐标）
 for y in range(y0, y1):
     samp = [px[x, y] for x in range(470, 520)]  # 同行右侧干净底色
     c = tuple(sum(p[i] for p in samp) // len(samp) for i in range(3))

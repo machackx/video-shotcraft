@@ -21,5 +21,5 @@ src = ROOT.parent.parent / 'assets' / 'audio' / 'bgm' / 'cat-walk.mp3'
 dst = ROOT / 'public' / 'audio' / 'bgm' / 'cat-walk-cut.flac'
 dst.parent.mkdir(parents=True, exist_ok=True)
 # -ss 放在 -i 之后 = 解码后按样本精确裁切
-subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(src), '-ss', f'{start:.5f}', '-t', '47', '-c:a', 'flac', str(dst)], check=True)
+subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(src), '-ss', f'{start:.5f}', '-t', '48.5', '-c:a', 'flac', str(dst)], check=True)
 print(f'{dst.relative_to(ROOT)}  start={start:.5f}s')

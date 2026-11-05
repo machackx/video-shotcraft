@@ -4,7 +4,7 @@
 // BGM = assets/audio/bgm/cat-walk.mp3（Arulo · House · Mixkit 免费可商用），节奏分析见 analysis/bgm-cat-walk.json：
 // 130.0 BPM（T=0.46156s，网格残差 ≤9ms）。片头对齐歌曲第 15 拍（SOURCE_BEAT0 + 15T = 7.170s），
 // 于是「片内第 k 拍 = 歌曲第 k+15 拍」，歌曲的 drop（第 63 拍，29.33s，onset 峰）落在片内第 48 拍 = S6 业财一体切点。
-// 硬切点全部钉在整拍上（music-beat-sync §4），两处白闪 + 收尾字标压印分别钉第 22 / 48 / 90 拍（kick 1.06 / 1.13 / 0.93）。
+// 硬切点全部钉在整拍上（music-beat-sync §4），两处白闪 + 收尾字标压印分别钉第 22 / 48 / 94 拍（kick 1.06 / 1.13 / 0.94）。
 export const FPS = 30;
 export const SOURCE_BEAT0 = 0.2469; // 源音乐分析 t0（秒），与 analysis/bgm-cat-walk.json 一致
 export const BEAT_INT = 0.46156; // T（秒）
@@ -19,10 +19,10 @@ const CUTS = {
   ai: beatF(34), //       471：S3 落定 hold 后进入景深（kick 0.63）
   rows: beatF(41), //     568：S4 景深回实 = S5 首帧（连续镜头）
   exploded: beatF(48), // 665：白闪 #2 = 歌曲 drop（kick 1.13）
-  phone: beatF(63), //    872：底色过渡（dip）
-  industries: beatF(75), // 1039：底色过渡（dip）
-  outro: beatF(90) - 44, // 1202：S9 第 44 帧（字标压印）= 第 90 拍（kick 0.93）
-  end: beatF(90) - 44 + 165, // 1367
+  phone: beatF(66), //    914：底色过渡（dip；kick 0.69）——S6 悬停段延长后（终检：标注全亮 ≥2s）
+  industries: beatF(78), // 1080：底色过渡（dip；kick 0.83）
+  outro: beatF(94) - 44, // 1258：S9 第 44 帧（字标压印）= 第 94 拍（kick 0.94）
+  end: beatF(94) - 44 + 165, // 1423
 };
 
 const order = [
@@ -71,7 +71,7 @@ export const QA_FRAMES: Record<ShotKey, number[]> = {
   crane: [10, 70, 150],
   ai: [12, 50, 80],
   rows: [20, 48, 90],
-  exploded: [30, 90, 190],
+  exploded: [30, 120, 232],
   phone: [20, 80, 150],
   industries: [30, 70, 125],
   outro: [30, 70, 150],

@@ -1,63 +1,72 @@
 {
+ "date": "2026-11-05",
+ "method": "normalized cross-correlation of SFX source files vs. rendered no-BGM mix (mono 48 kHz)",
  "pipeline": "Remotion 4.0.484 \u00b7 h264 + AAC 48kHz stereo \u00b7 mp4",
  "probes": [
   {
    "src": "audio/sfx/thud-soft.wav",
-   "design_from_f": 217,
-   "found_s": 7.27567,
-   "offset_f": 1.27,
+   "design_from_f": 216,
+   "found_s": 7.24267,
+   "offset_f": 1.28,
    "score": 1.0
   },
   {
    "src": "audio/sfx/glass-tap.wav",
-   "design_from_f": 472,
-   "found_s": 15.77567,
-   "offset_f": 1.27,
-   "score": 0.892
+   "design_from_f": 471,
+   "found_s": 15.74267,
+   "offset_f": 1.28,
+   "score": 0.942
+  },
+  {
+   "src": "audio/sfx/typing-query.wav",
+   "design_from_f": 482,
+   "found_s": 16.10967,
+   "offset_f": 1.29,
+   "score": 0.903
   },
   {
    "src": "audio/sfx/thud-soft.wav",
-   "design_from_f": 799,
-   "found_s": 26.67567,
-   "offset_f": 1.27,
+   "design_from_f": 840,
+   "found_s": 28.04267,
+   "offset_f": 1.28,
    "score": 0.993
   },
   {
    "src": "audio/sfx/glass-tap.wav",
-   "design_from_f": 910,
-   "found_s": 30.37567,
-   "offset_f": 1.27,
+   "design_from_f": 951,
+   "found_s": 31.74267,
+   "offset_f": 1.28,
    "score": 1.0
   },
   {
    "src": "audio/sfx/glass-tap-b.wav",
-   "design_from_f": 940,
-   "found_s": 31.37567,
-   "offset_f": 1.27,
-   "score": 1.0
-  },
-  {
-   "src": "audio/sfx/tick-a.wav",
-   "design_from_f": 1071,
-   "found_s": 35.74267,
+   "design_from_f": 981,
+   "found_s": 32.74267,
    "offset_f": 1.28,
    "score": 1.0
   },
   {
    "src": "audio/sfx/tick-a.wav",
-   "design_from_f": 1136,
-   "found_s": 37.90967,
-   "offset_f": 1.29,
-   "score": 0.999
+   "design_from_f": 1114,
+   "found_s": 37.17567,
+   "offset_f": 1.27,
+   "score": 1.0
+  },
+  {
+   "src": "audio/sfx/tick-a.wav",
+   "design_from_f": 1185,
+   "found_s": 39.54267,
+   "offset_f": 1.28,
+   "score": 1.0
   },
   {
    "src": "audio/sfx/impact-deep.wav",
-   "design_from_f": 1246,
-   "found_s": 41.57567,
+   "design_from_f": 1300,
+   "found_s": 43.37567,
    "offset_f": 1.27,
-   "score": 0.998
+   "score": 0.983
   }
  ],
- "offset_f_median": 1.27,
+ "offset_f_median": 1.28,
  "offset_f_spread": 0.020000000000000018
 }

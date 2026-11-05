@@ -42,7 +42,7 @@ export const Caption: React.FC<{ text: string; duration: number; bottom?: number
           gap: 22,
           padding: '18px 40px 20px 34px',
           borderRadius: 999,
-          background: 'rgba(255,255,255,0.86)',
+          background: 'rgba(255,255,255,0.96)',
           backdropFilter: 'blur(14px) saturate(1.2)',
           border: `1px solid ${hexA(Q.line, 0.9)}`,
           boxShadow: `0 10px 30px -12px ${hexA(Q.shadow, 0.28)}, 0 2px 6px ${hexA(Q.shadow, 0.08)}`,

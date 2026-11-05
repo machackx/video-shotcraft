@@ -155,6 +155,12 @@ export const S2Converge: React.FC<Partial<typeof S2_DEFAULTS> & { duration?: num
                   <stop offset="1" stopColor={o.ink} />
                 </linearGradient>
               </defs>
+              {/* 标签淡出后，直线段向左补到画框外（demo 原几何起点 −22），线头不悬在半空；随擦除一起退 */}
+              {SRCS.map((s, i) => (
+                <line key={`tail${i}`} x1={-22} y1={s.y} x2={X_START} y2={s.y} stroke="#B9C6DC" strokeWidth={0.9}
+                  strokeDasharray={X_START + 22} strokeDashoffset={((X_START + 22) * (1 - labelOut)).toFixed(2)}
+                  opacity={(1 - seg(t, 0.78, 0.84, E.outQuad)).toFixed(3)} />
+              ))}
               {SRCS.map((s, i) => {
                 const { len } = GEOMS[i];
                 const draw = seg(t, 0.04 + i * 0.045, 0.04 + i * 0.045 + 0.17, E.outQuad);

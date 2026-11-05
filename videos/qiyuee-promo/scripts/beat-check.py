@@ -15,8 +15,11 @@ i = np.arange(len(beats)); A = np.vstack([i, np.ones_like(i)]).T
 res = beats - (t0 + i * T)
 print(f'rendered BGM grid: BPM={60 / T:.2f} t0={t0:.4f}s residual max {np.abs(res).max() * 1000:.0f}ms')
 # 设计切点（帧）：硬切 + 收尾字标压印
-cuts = {'白闪#1 S3 (beat 22)': 305, 'S4 (beat 34)': 471, 'S5 (beat 41)': 568, '白闪#2 S6 drop (beat 48)': 665,
-        'S7 (beat 63)': 872, 'S8 (beat 75)': 1039, 'S9 字标压印 (beat 90)': 1246}
+# 设计切点（帧）= 片内拍号 × T，与 src/timeline.ts 的 beatF() 同式（T 取源分析值）
+T_SRC = 0.46156
+beatF = lambda k: round(k * T_SRC * 30)
+cuts = {'白闪#1 S3 (beat 22)': beatF(22), 'S4 (beat 34)': beatF(34), 'S5 (beat 41)': beatF(41), '白闪#2 S6 drop (beat 48)': beatF(48),
+        'S7 (beat 66)': beatF(66), 'S8 (beat 78)': beatF(78), 'S9 字标压印 (beat 94)': beatF(94)}
 rows = []
 for name, f in cuts.items():
     t = f / 30
