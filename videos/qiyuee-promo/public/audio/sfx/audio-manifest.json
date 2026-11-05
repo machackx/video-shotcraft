@@ -1,0 +1,200 @@
+{
+ "source_note": "freesound.org (site, apiv2, cdn) returned HTTP 403 to this production environment on 2026-11-05; SFX were synthesized instead. Replace with Freesound recordings via references/sfx-sourcing.md when reachable.",
+ "files": [
+  {
+   "file": "whoosh-soft.wav",
+   "kind": "synthesized (original, scripts/make-sfx.py, fixed seed)",
+   "description": "柔和空气 whoosh（运镜 / 手机升起 / 构件炸开）",
+   "license": "Original work for this project (no third-party material)",
+   "sha256": "18ef964dc53f30cf6c92b6d6383e3578388b3421554063d6078b34da9b5f1777",
+   "duration_s": 0.9,
+   "sample_rate": 48000,
+   "peak_rms_time_s": 0.495,
+   "sample_peak_dbfs": -3.0,
+   "freesound_queries_for_replacement": [
+    "soft air whoosh",
+    "gentle swish transition"
+   ]
+  },
+  {
+   "file": "whoosh-fast.wav",
+   "kind": "synthesized (original, scripts/make-sfx.py, fixed seed)",
+   "description": "短促 whoosh（白闪盖切 / 字标退场）",
+   "license": "Original work for this project (no third-party material)",
+   "sha256": "fbc803e41cd3f5a27baa6f2494ff5abeca41416dcaf0c942982e9c5932d6c197",
+   "duration_s": 0.5,
+   "sample_rate": 48000,
+   "peak_rms_time_s": 0.235,
+   "sample_peak_dbfs": -2.0,
+   "freesound_queries_for_replacement": [
+    "fast short whoosh",
+    "quick swoosh cinematic"
+   ]
+  },
+  {
+   "file": "swell-soft.wav",
+   "kind": "synthesized (original, scripts/make-sfx.py, fixed seed)",
+   "description": "低调空气起伏（品牌落定 / 段落切入）",
+   "license": "Original work for this project (no third-party material)",
+   "sha256": "06b66e728c2f128817f2e7f7d2e003fdc26d6bb3306821b2140aca8b9c3a8f54",
+   "duration_s": 1.3,
+   "sample_rate": 48000,
+   "peak_rms_time_s": 0.685,
+   "sample_peak_dbfs": -4.0,
+   "freesound_queries_for_replacement": [
+    "soft cinematic swell",
+    "airy transition pad"
+   ]
+  },
+  {
+   "file": "riser.wav",
+   "kind": "synthesized (original, scripts/make-sfx.py, fixed seed)",
+   "description": "电影式 riser（收尾合影组装铺垫，末端直落 impact）",
+   "license": "Original work for this project (no third-party material)",
+   "sha256": "e957826696065cf9803c804b9379ca766968fc3488997105e746d218bf7d9b46",
+   "duration_s": 1.55,
+   "sample_rate": 48000,
+   "peak_rms_time_s": 1.525,
+   "sample_peak_dbfs": -2.83,
+   "freesound_queries_for_replacement": [
+    "cinematic riser",
+    "tension riser short"
+   ]
+  },
+  {
+   "file": "impact-deep.wav",
+   "kind": "synthesized (original, scripts/make-sfx.py, fixed seed)",
+   "description": "低频电影 impact（收尾字标压印）",
+   "license": "Original work for this project (no third-party material)",
+   "sha256": "26aa8eac9312d9375aff94081031f5afeeb5780966a3ec4fbe57f17daac18ffe",
+   "duration_s": 2.2,
+   "sample_rate": 48000,
+   "peak_rms_time_s": 0.015,
+   "sample_peak_dbfs": -1.0,
+   "freesound_queries_for_replacement": [
+    "deep cinematic impact",
+    "boom hit trailer"
+   ]
+  },
+  {
+   "file": "thud-soft.wav",
+   "kind": "synthesized (original, scripts/make-sfx.py, fixed seed)",
+   "description": "轻柔落地 thud（汇聚吞并 / 构件合体落座）",
+   "license": "Original work for this project (no third-party material)",
+   "sha256": "020c42eeee8c0c26c4c2a61a3e08f45a337351163860f47b3cfabf723a1e9d33",
+   "duration_s": 0.9,
+   "sample_rate": 48000,
+   "peak_rms_time_s": 0.005,
+   "sample_peak_dbfs": -3.0,
+   "freesound_queries_for_replacement": [
+    "soft thud",
+    "muffled impact soft"
+   ]
+  },
+  {
+   "file": "shimmer.wav",
+   "kind": "synthesized (original, scripts/make-sfx.py, fixed seed)",
+   "description": "高频余韵 shimmer（扫光 / 收尾 rule 长出）",
+   "license": "Original work for this project (no third-party material)",
+   "sha256": "d5108839d3dbfdddcc9f55e8b1e8758eee4a25e131e42c5f7083ad9a7f1ecb48",
+   "duration_s": 1.5,
+   "sample_rate": 48000,
+   "peak_rms_time_s": 0.355,
+   "sample_peak_dbfs": -6.0,
+   "freesound_queries_for_replacement": [
+    "subtle shimmer",
+    "magic sparkle soft"
+   ]
+  },
+  {
+   "file": "glass-tap.wav",
+   "kind": "synthesized (original, scripts/make-sfx.py, fixed seed)",
+   "description": "玻璃轻触（胶囊弹出 / 悬浮卡弹出 A）",
+   "license": "Original work for this project (no third-party material)",
+   "sha256": "3bfa41b98b18afe227393a85de025e67a51fdc28b032bada2c80f9f3cae287f6",
+   "duration_s": 0.35,
+   "sample_rate": 48000,
+   "peak_rms_time_s": 0.005,
+   "sample_peak_dbfs": -4.0,
+   "freesound_queries_for_replacement": [
+    "glass tap soft",
+    "light glass tick"
+   ]
+  },
+  {
+   "file": "glass-tap-b.wav",
+   "kind": "synthesized (original, scripts/make-sfx.py, fixed seed)",
+   "description": "玻璃轻触（悬浮卡弹出 B，与 A 交替防复读）",
+   "license": "Original work for this project (no third-party material)",
+   "sha256": "5e5334baeb0e12a81239bbba10afbcb153deb865489d6cef340aed0471c32554",
+   "duration_s": 0.35,
+   "sample_rate": 48000,
+   "peak_rms_time_s": 0.005,
+   "sample_peak_dbfs": -4.0,
+   "freesound_queries_for_replacement": [
+    "glass tap soft",
+    "light glass tick"
+   ]
+  },
+  {
+   "file": "typing-query.wav",
+   "kind": "synthesized (original, scripts/make-sfx.py, fixed seed)",
+   "description": "10 键轻键盘打字（AI 胶囊 10 字，5f/字，确定性微抖）",
+   "license": "Original work for this project (no third-party material)",
+   "sha256": "439c9728d01b504ca01d2421a8ba4b4efee904e5ca9aa3d9a1ef4a850ed56a3e",
+   "duration_s": 1.967,
+   "sample_rate": 48000,
+   "peak_rms_time_s": 0.185,
+   "sample_peak_dbfs": -6.0,
+   "freesound_queries_for_replacement": [
+    "soft keyboard typing",
+    "laptop typing short"
+   ]
+  },
+  {
+   "file": "tick-a.wav",
+   "kind": "synthesized (original, scripts/make-sfx.py, fixed seed)",
+   "description": "机械开关 tick A（行业滚轮落定）",
+   "license": "Original work for this project (no third-party material)",
+   "sha256": "0e31091abdc156bd9ff39bd0177e749decf712b7a0e69d6cfce4712ad6dfdd00",
+   "duration_s": 0.18,
+   "sample_rate": 48000,
+   "peak_rms_time_s": 0.005,
+   "sample_peak_dbfs": -5.0,
+   "freesound_queries_for_replacement": [
+    "mechanical switch click",
+    "small toggle click"
+   ]
+  },
+  {
+   "file": "tick-b.wav",
+   "kind": "synthesized (original, scripts/make-sfx.py, fixed seed)",
+   "description": "机械开关 tick B（与 A 交替）",
+   "license": "Original work for this project (no third-party material)",
+   "sha256": "6d54fb7c22a0a1e6db3f38f52e883f3303d15d4e06446606e8cb8ed02604d09c",
+   "duration_s": 0.18,
+   "sample_rate": 48000,
+   "peak_rms_time_s": 0.005,
+   "sample_peak_dbfs": -6.35,
+   "freesound_queries_for_replacement": [
+    "mechanical switch click",
+    "small toggle click"
+   ]
+  },
+  {
+   "file": "bell-soft.wav",
+   "kind": "synthesized (original, scripts/make-sfx.py, fixed seed)",
+   "description": "柔和提示铃（看板铃铛红点：画面本身是一条系统提醒，叙事上需要提示音）",
+   "license": "Original work for this project (no third-party material)",
+   "sha256": "8b92f0fdc7bd640a3e03ca6b33fec6dea2301d9e4ce896e924495c23d95138c8",
+   "duration_s": 1.4,
+   "sample_rate": 48000,
+   "peak_rms_time_s": 0.015,
+   "sample_peak_dbfs": -8.0,
+   "freesound_queries_for_replacement": [
+    "soft notification bell",
+    "gentle chime single"
+   ]
+  }
+ ]
+}

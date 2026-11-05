@@ -1,0 +1,49 @@
+{
+ "bpm": 130.00509156265454,
+ "t0": 7.845151330392087,
+ "rows": [
+  {
+   "cut": "\u767d\u95ea#1 S3 (beat 22)",
+   "design_f": 305,
+   "nearest_beat_f": 304.58,
+   "error_f": 0.42
+  },
+  {
+   "cut": "S4 (beat 34)",
+   "design_f": 471,
+   "nearest_beat_f": 470.73,
+   "error_f": 0.27
+  },
+  {
+   "cut": "S5 (beat 41)",
+   "design_f": 568,
+   "nearest_beat_f": 567.65,
+   "error_f": 0.35
+  },
+  {
+   "cut": "\u767d\u95ea#2 S6 drop (beat 48)",
+   "design_f": 665,
+   "nearest_beat_f": 664.57,
+   "error_f": 0.43
+  },
+  {
+   "cut": "S7 (beat 63)",
+   "design_f": 872,
+   "nearest_beat_f": 872.25,
+   "error_f": -0.25
+  },
+  {
+   "cut": "S8 (beat 75)",
+   "design_f": 1039,
+   "nearest_beat_f": 1038.4,
+   "error_f": 0.6
+  },
+  {
+   "cut": "S9 \u5b57\u6807\u538b\u5370 (beat 90)",
+   "design_f": 1246,
+   "nearest_beat_f": 1246.08,
+   "error_f": -0.08
+  }
+ ],
+ "drop_rms_jump_f": 671.4
+}

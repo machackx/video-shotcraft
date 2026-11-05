@@ -13,7 +13,8 @@ import { Img, staticFile, useCurrentFrame } from 'remotion';
 import { EASE, ramp } from '../fixtures/Polish';
 import { LOOKS, Stage, TextReveal, alpha, springAt, type Look } from '../fixtures/Look';
 import { QiyueMark } from '../fixtures/Brand';
-import { FONT_CN, Q } from '../theme';
+import { FONT_CN, Q, qiyueStageBg } from '../theme';
+import { DIP } from '../timeline';
 import layout from '../layout.json';
 
 export const S7_DEFAULTS = {
@@ -92,6 +93,8 @@ export const S7Phone: React.FC<Partial<typeof S7_DEFAULTS> & { duration?: number
     boxShadow: `0 0 0 1px ${alpha(L.shadow, 0.06)}, 0 3px 6px ${alpha(L.shadow, 0.08)}, 0 26px 50px -16px ${alpha(L.shadow, 0.32)}`,
   };
   const wordmark = 90;
+  const duration = p.duration ?? ANIM;
+  const dip = Math.max(ramp(f, duration - DIP, DIP, EASE.smooth), 1 - ramp(f, 0, DIP, EASE.smooth)); // 首 8f 从底色淡入（接 S6）、末 8f 淡到底色（接 S8）
   const bell = imgPt(698, 140);
   const msg = imgPt(598, 1688);
 
@@ -161,6 +164,7 @@ export const S7Phone: React.FC<Partial<typeof S7_DEFAULTS> & { duration?: number
           <TextReveal text={o.subtitle} by="word" variant="blur" start={wordmark + 8} each={16} gap={4} />
         </div>
       </div>
+      {dip > 0 && <div style={{ position: 'absolute', inset: 0, background: qiyueStageBg({ x: 50, y: 34 }), opacity: dip }} />}
     </div>
   );
 };

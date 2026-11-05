@@ -12,7 +12,8 @@ import { AbsoluteFill, Img, staticFile, useCurrentFrame } from 'remotion';
 import { LOOKS, Sheen, Stage, TextReveal, alpha, springAt, type Look } from '../fixtures/Look';
 import { EASE, mix, ramp } from '../fixtures/Polish';
 import { QiyueWordmark } from '../fixtures/Brand';
-import { FONT_CN, Q } from '../theme';
+import { FONT_CN, Q, qiyueStageBg } from '../theme';
+import { DIP } from '../timeline';
 import layout from '../layout.json';
 
 export const S6_DEFAULTS = {
@@ -132,6 +133,8 @@ export const S6Exploded: React.FC<Partial<typeof S6_DEFAULTS> & { duration?: num
   const spread = ramp(f, EXPLODE, 30, EASE.out) * (1 - ramp(f, ASSEMBLE, CLOSE - ASSEMBLE, EASE.exit));
   const sheen = ramp(f, CLOSE + 4, 24, EASE.swift);
   const labels = o.callouts.split('\n').map((l) => l.split('|'));
+  const duration = props.duration ?? 200;
+  const dip = ramp(f, duration - DIP, DIP, EASE.smooth); // 末 8f 淡到底色，接 S7（不加第三处白闪，R4）
 
   return (
     <AbsoluteFill style={{ overflow: 'hidden', fontFamily: FONT_CN }}>
@@ -214,6 +217,7 @@ export const S6Exploded: React.FC<Partial<typeof S6_DEFAULTS> & { duration?: num
           {o.subtitle}
         </div>
       </div>
+      {dip > 0 && <AbsoluteFill style={{ background: qiyueStageBg({ x: 50, y: 34 }), opacity: dip }} />}
     </AbsoluteFill>
   );
 };

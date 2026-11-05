@@ -1,0 +1,2 @@
+draft-v2（MASTER 增益前）：Integrated −22.1 LUFS · LRA 9.9 LU · True peak −6.5 dBFS（ffmpeg ebur128）
+draft-v2-nobgm：Integrated −27.5 LUFS · LRA 23.4 LU

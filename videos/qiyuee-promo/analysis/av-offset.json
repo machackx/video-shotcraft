@@ -1,0 +1,63 @@
+{
+ "pipeline": "Remotion 4.0.484 \u00b7 h264 + AAC 48kHz stereo \u00b7 mp4",
+ "probes": [
+  {
+   "src": "audio/sfx/thud-soft.wav",
+   "design_from_f": 217,
+   "found_s": 7.27567,
+   "offset_f": 1.27,
+   "score": 1.0
+  },
+  {
+   "src": "audio/sfx/glass-tap.wav",
+   "design_from_f": 472,
+   "found_s": 15.77567,
+   "offset_f": 1.27,
+   "score": 0.892
+  },
+  {
+   "src": "audio/sfx/thud-soft.wav",
+   "design_from_f": 799,
+   "found_s": 26.67567,
+   "offset_f": 1.27,
+   "score": 0.993
+  },
+  {
+   "src": "audio/sfx/glass-tap.wav",
+   "design_from_f": 910,
+   "found_s": 30.37567,
+   "offset_f": 1.27,
+   "score": 1.0
+  },
+  {
+   "src": "audio/sfx/glass-tap-b.wav",
+   "design_from_f": 940,
+   "found_s": 31.37567,
+   "offset_f": 1.27,
+   "score": 1.0
+  },
+  {
+   "src": "audio/sfx/tick-a.wav",
+   "design_from_f": 1071,
+   "found_s": 35.74267,
+   "offset_f": 1.28,
+   "score": 1.0
+  },
+  {
+   "src": "audio/sfx/tick-a.wav",
+   "design_from_f": 1136,
+   "found_s": 37.90967,
+   "offset_f": 1.29,
+   "score": 0.999
+  },
+  {
+   "src": "audio/sfx/impact-deep.wav",
+   "design_from_f": 1246,
+   "found_s": 41.57567,
+   "offset_f": 1.27,
+   "score": 0.998
+  }
+ ],
+ "offset_f_median": 1.27,
+ "offset_f_spread": 0.020000000000000018
+}

@@ -10,8 +10,9 @@
 import React from 'react';
 import { useCurrentFrame } from 'remotion';
 import { DesignStage, E, seg } from '../fixtures/Motion';
-import { Grain } from '../fixtures/Polish';
+import { EASE, Grain, ramp } from '../fixtures/Polish';
 import { FONT_CN, Q, mixHex, qiyueStageBg } from '../theme';
+import { DIP } from '../timeline';
 
 export const S8_DEFAULTS = {
   stem: '灵活适配',
@@ -35,17 +36,18 @@ const reelAt = (t: number) => {
   }
   return p;
 };
-const DT = 0.5 / (ANIM - 1);
 
 export const S8Industries: React.FC<Partial<typeof S8_DEFAULTS> & { duration?: number }> = (props) => {
   const o = { ...S8_DEFAULTS, ...props };
   const frame = useCurrentFrame();
-  const t = Math.min(1, frame / (ANIM - 1));
+  const duration = props.duration ?? ANIM;
+  const t = Math.min(1, frame / (duration - 1)); // 归一化进度跟镜头时长走（卡点后时长 163f，比例窗不变）
   const words = o.words.split('|');
   const p = reelAt(t);
+  const DT = 0.5 / (duration - 1);
   const speed = Math.abs(reelAt(t + DT) - reelAt(t - DT));
   const motionBlur = Math.min(4, speed * ROW * 0.22);
-  const groupOp = 1 - seg(t, 0.9, 0.985) * 0.999;
+  const groupOp = (1 - seg(t, 0.9, 0.985) * 0.999) * ramp(frame, 0, DIP, EASE.smooth); // 首 8f 从底色淡入（接 S7 的 dip）
   const noteIn = seg(t, 0.2, 0.3, E.outCubic);
 
   return (
