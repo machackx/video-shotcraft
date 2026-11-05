@@ -1,0 +1,6 @@
+node_modules/
+out/qa/
+out/frames/
+.render-public/
+# 原始手机截图含个人姓名，只在本地做抹除处理，不进库（scripts/crop-portal.py 会自动重新下载）
+analysis/mobile-home-reference.png
